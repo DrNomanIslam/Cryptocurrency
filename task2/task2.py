@@ -31,7 +31,7 @@ def load_data():
     df = pd.read_csv('index.csv')
     mask = (df['Date'] >= '2018-01-01') & (df['Date'] <= '2018-01-31')
     df = df.loc[mask]
-    x_train = df['Close']
+    x_train = (df['Close']-df['Open'])*100/(df['Open'])
     #print((x_train))
     #print(y_train)
     return x_train,y_train
@@ -93,5 +93,5 @@ def regressSKLearn(x_train,y_train):
 
 
 
-#regress_tensorflow(*load_data())
-regressSKLearn(*load_data())
+regress_tensorflow(*load_data())
+#regressSKLearn(*load_data())
